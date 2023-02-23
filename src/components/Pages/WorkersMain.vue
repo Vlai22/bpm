@@ -1,24 +1,32 @@
 <template>
 <div class="page">
-  <div class="Workers-row">
-    <div class="Workers">
-      <div @click="OPWork()" class="Worker" v-for="worker in workers" :key="worker.id">
-        <img style="margin: 5px;" width="140" height="120 " src="" alt="Photo">
-        <div class="text">
-          <h6>Name:{{worker.name}}</h6>
-          <h6>Job title:{{worker.j_title}}</h6>
-        </div>
-      </div>
-    </div>
-  </div>
+<!--  <div class="Workers-row">-->
+<!--    <div class="Workers">-->
+<!--      <div @click="OPWork()" class="Worker" v-for="worker in workers" :key="worker.id">-->
+<!--        <img style="margin: 5px;" width="140" height="120 " src="@/assets/img/photo.jpg" alt="Photo">-->
+<!--        <div class="text">-->
+<!--          <h6>Name:{{worker.name}}</h6>-->
+<!--          <h6>Job title:{{worker.j_title}}</h6>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+  <CardWorker></CardWorker>
 </div>
+  <component :is="title"></component>
 </template>
 
 <script>
+import CardWorker from "@/components/UI/CardWorker";
 export default {
   name: "WorkersMain",
+  components: {
+    CardWorker
+  },
+
   data () {
     return{
+      title: "",
        workers:[
          {id: 1,name: "Bob",j_title: "manager",uid:"123"},
          {id: 2,name: "Nick",j_title: "web-programmer",uid:"353"},
@@ -39,6 +47,7 @@ export default {
 .page{
   width: 100%;
   background-color: rgba(150,150,150,0.2);
+  align-items: center;
 }
 .Workers{
   margin-left: 50px;
