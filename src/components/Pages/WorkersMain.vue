@@ -47,7 +47,6 @@ export default {
 .page{
   width: 100%;
   background-color: rgba(150,150,150,0.2);
-  align-items: center;
 }
 .Workers{
   margin-left: 50px;
