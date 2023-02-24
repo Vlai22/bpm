@@ -3,14 +3,18 @@
        <div class="title">
          <img style="margin-right: 20px" width="300" height="350" src="@/assets/img/photo.jpg" alt="Photo">
          <div>
-           <h2>Name:{{worker.name}}</h2>
-           <h2>Job title: {{worker.j_title}}</h2>
-           <h2>Status: {{worker.status}}</h2>
-           <h2>Location: {{worker.location}}</h2>
+           <h2>Name:{{workered.name}}</h2>
+           <h2>Job title: {{workered.j_title}}</h2>
+           <h2>Status: {{workered.status}}</h2>
+           <h2>Location: {{workered.location}}</h2>
+           <h2>ID: {{id}}</h2>
          </div>
+         <button @click="Exit()">Exit</button>
        </div>
       <div class="chat">
-         <div class="input"></div>
+         <div class="input">
+           <input type="text">
+         </div>
       </div>
   </div>
 </template>
@@ -20,7 +24,12 @@ export default {
   name: "CardWorker",
   data () {
     return {
-      worker:{name:"Kolin",j_title:"programmer",status:"work",location:"Weisestraße 35, 12049 Berlin, Germany"},
+      workered:{name:"Kolin",j_title:"programmer",status:"work",location:"Weisestraße 35, 12049 Berlin, Germany"},
+    }
+  },
+  methods:{
+    Exit(){
+      this.$emit('exit_card_worker');
     }
   }
 }
@@ -41,5 +50,9 @@ export default {
   margin-left: auto;
   margin-top: 10px;
   align-items: center;
+  width: 70vw;
+}
+.input{
+  width: 100%;
 }
 </style>

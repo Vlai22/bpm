@@ -1,43 +1,30 @@
 <template>
 <div class="page">
-<!--  <div class="Workers-row">-->
-<!--    <div class="Workers">-->
-<!--      <div @click="OPWork()" class="Worker" v-for="worker in workers" :key="worker.id">-->
-<!--        <img style="margin: 5px;" width="140" height="120 " src="@/assets/img/photo.jpg" alt="Photo">-->
-<!--        <div class="text">-->
-<!--          <h6>Name:{{worker.name}}</h6>-->
-<!--          <h6>Job title:{{worker.j_title}}</h6>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-  <CardWorker></CardWorker>
+  <component :is="title" @open_worker="open()" @exit_card_worker="exit()"></component>
 </div>
-  <component :is="title"></component>
+
 </template>
 
 <script>
 import CardWorker from "@/components/UI/CardWorker";
+import TableWorkers from "@/components/UI/TableWorkers";
 export default {
   name: "WorkersMain",
   components: {
-    CardWorker
+    CardWorker,
+    TableWorkers,
   },
-
   data () {
     return{
-      title: "",
-       workers:[
-         {id: 1,name: "Bob",j_title: "manager",uid:"123"},
-         {id: 2,name: "Nick",j_title: "web-programmer",uid:"353"},
-         {id: 3,name: "Kai",j_title: "software engineer",uid:"423"},
-         {id: 4,name: "Tim",j_title: "manager",uid:"153"},
-       ]
+      title: "TableWorkers",
     }
   },
-  methods: {
-    OPWork(){
-
+  methods:{
+    open(){
+      this.title = "CardWorker";
+    },
+    exit(){
+      this.title = "TableWorkers";
     },
   }
 }
@@ -47,31 +34,5 @@ export default {
 .page{
   width: 100%;
   background-color: rgba(150,150,150,0.2);
-}
-.Workers{
-  margin-left: 50px;
-  margin-right: 50px;
-  margin-top: 20px;
-  display: flex;
-}
-.Worker{
-  margin: 10px;
-  height: 200px;
-  width: 150px;
-  border: rgba(160,160,160,0.7) solid 1px;
-}
-.text {
-  min-width: 140px;
-  margin: 5px;
-  height: 75px;
-  /*border: black solid 1px;*/
-}
-h6{
-  margin: 0px;
-}
-.Workers-row{
-  display: flex;
-  flex-wrap: wrap;
-
 }
 </style>

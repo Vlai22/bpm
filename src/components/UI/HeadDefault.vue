@@ -18,7 +18,7 @@ export default {
 }
 </script>
 
-<style >
+<style scoped>
 .head{
   display: flex;
   min-width: 100%;
