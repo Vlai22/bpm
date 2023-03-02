@@ -1,33 +1,80 @@
 <template>
-  <div class="open_cal"  >
-      <div onclick="click()" class="calculator">
+  <div class="open_cal"  @click="open">
+  </div>
+      <div id="cal"  class="calculator">
         <div class="history"></div>
-        <div id="test" class="input" ><span>Value: {{a}}</span></div>
+        <div id="test" class="input" ><span>{{action}}</span></div>
         <div>
           <cal-btn>+</cal-btn>
         </div>
       </div>
-  </div>
+
 </template>
 
 <script>
 export default {
   name: "CalculatorR",
+  created() {
+      window.addEventListener('keypress',this.input);
+
+  },
   data () {
-    return{a : ''}
+    return{j:0, i: "",sing: "",action : "",values:[]}
   },
   methods : {
-    click () {
-      document.addEventListener('keydown', function (e){
-        console.log(e.key);
-      this.test(e.key);
-      });
-
+    input(e) {
+      console.log(e.key);
+      if(e.key >= 0 && e.key <= 9){
+          this.action += e.key;
+      }else{
+        switch (e.key){
+          case "+": this.action += "+";
+          this.sing = "+";
+          break;
+          case "-": this.action += "-";
+          this.sing = "-";
+          break;
+          case "*": this.action += "*";
+          this.sing = "*";
+          break;
+          case "/": this.action += "/";
+          this.sing = "/";
+          break;
+          case "%": this.action += "%";
+          this.sing = "^";
+          break;
+          case "^": this.action +=  "^";
+          this.sing = "^";
+          break;
+          case "Enter": this.calculate();
+          break;
+          case "=": this.calculate();
+          break;
+        }
+      }
     },
-    test : function test(e) {
-      this.a = e;
-      console.log(e);
-      document.addEventListener("keydown", );
+    calculate(){
+        this.values = this.action.split(this.sing);
+        switch (this.sing){
+          case "+": this.action =  Number(this.values[0]) + Number(this.values[1]);
+          break;
+          case "-": this.action =  Number(this.values[0]) - Number(this.values[1]);
+          break;
+          case "*": this.action =  Number(this.values[0]) * Number(this.values[1]);
+          break;
+          case "/": this.action =  Number(this.values[0]) / Number(this.values[1]);
+          break;
+          case "%": this.action =  Number(this.values[0]) * Number(this.values[1]) / 100;
+          break;
+        }
+    },
+    open(){
+      if(window.getComputedStyle(document.getElementById("cal")).display == "none"){
+        console.log("ok");
+        document.getElementById("cal").style.display = "block";
+      }else{
+        document.getElementById("cal").style.display = "none";
+      }
     }
   }
 }
@@ -41,6 +88,7 @@ export default {
   height: 100px;
   right: 0px;
   top: 50px;
+  z-index: 2;
 }
 .history{
   width: 100%;
@@ -55,6 +103,7 @@ export default {
   right: 0px;
   top: 50px;
   z-index: 1;
+  display: none;
 }
 .input{
   width: 100%;

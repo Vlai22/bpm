@@ -10,7 +10,7 @@
   </LeftBar>
   <WorkersMain></WorkersMain>
   </div>
-<!--  <calculator-r></calculator-r>-->
+ <calculator-r></calculator-r>
 </template>
 
 <script>
