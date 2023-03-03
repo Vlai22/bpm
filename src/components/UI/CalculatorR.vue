@@ -5,7 +5,14 @@
         <div class="history"></div>
         <div id="test" class="input" ><span>{{action}}</span></div>
         <div>
-          <cal-btn>+</cal-btn>
+          <cal-btn @click="buttoncal('+')">+</cal-btn>
+          <cal-btn @click="buttoncal('-')">-</cal-btn>
+          <cal-btn @click="buttoncal('*')">*</cal-btn>
+          <cal-btn @click="buttoncal('/')">/</cal-btn>
+          <cal-btn @click="buttoncal('%')">%</cal-btn>
+          <cal-btn @click="buttoncal('^')">^</cal-btn>
+          <cal-btn @click="buttoncal('1')">1</cal-btn>
+          <cal-btn @click="buttoncal('2')">2</cal-btn>
         </div>
       </div>
 
@@ -25,7 +32,7 @@ export default {
     input(e) {
       this.key = e.key;
       if(this.key >= 0 && this.key <= 9){
-          this.action += this.key;
+          this.action += Number(this.key);
       }else{
         switch (this.key){
           case "+": this.action += "+";
@@ -55,21 +62,32 @@ export default {
           case "Delete": this.action = "";
         }
       }
+      this.action = this.action.trim();
     },
     calculate(){
         this.values = this.action.split(this.sing);
+        this.action = "";
         switch (this.sing){
-          case "+": this.action =  Number(this.values[0]) + Number(this.values[1]);
+          case "+":this.action = Number(this.values[0]) + Number(this.values[1]);
+            this.sing = "";
+          console.log(this.values[0] + "/" + this.values[1]);
           break;
-          case "-": this.action =  Number(this.values[0]) - Number(this.values[1]);
+          case "-": this.action = Number(this.values[0]) - Number(this.values[1]);
+            this.sing = "";
           break;
-          case "*": this.action =  Number(this.values[0]) * Number(this.values[1]);
+          case "*": this.action = Number(this.values[0]) * Number(this.values[1]);
+            this.sing = "";
           break;
-          case "/": this.action =  Number(this.values[0]) / Number(this.values[1]);
+          case "/": this.action = Number(this.values[0]) / Number(this.values[1]);
+            this.sing = "";
           break;
-          case "%": this.action =  Number(this.values[0]) * Number(this.values[1]) / 100;
+          case "%": this.action = Number(this.values[0]) * Number(this.values[1]) / 100;
+            this.sing = "";
           break;
         }
+    },
+    buttoncal(s){
+      this.input({key:s});
     },
     open(){
       if(window.getComputedStyle(document.getElementById("cal")).display == "none"){
@@ -87,8 +105,8 @@ export default {
 .open_cal{
   position: fixed;
   background-color: rgba(1,1,1,0.2);
-  width: 50px;
-  height: 100px;
+  width: 20px;
+  height: 40px;
   right: 0px;
   top: 50px;
   z-index: 2;
