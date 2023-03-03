@@ -15,19 +15,19 @@
 export default {
   name: "CalculatorR",
   created() {
-      window.addEventListener('keypress',this.input);
+      window.addEventListener('keydown',this.input);
 
   },
   data () {
-    return{j:0, i: "",sing: "",action : "",values:[]}
+    return{j:0, i: "",sing: "",action : "",values:[],key: ""}
   },
   methods : {
     input(e) {
-      console.log(e.key);
-      if(e.key >= 0 && e.key <= 9){
-          this.action += e.key;
+      this.key = e.key;
+      if(this.key >= 0 && this.key <= 9){
+          this.action += this.key;
       }else{
-        switch (e.key){
+        switch (this.key){
           case "+": this.action += "+";
           this.sing = "+";
           break;
@@ -50,6 +50,9 @@ export default {
           break;
           case "=": this.calculate();
           break;
+          case "Backspace": this.action = this.action.slice(0,-1);
+          break;
+          case "Delete": this.action = "";
         }
       }
     },
@@ -70,10 +73,10 @@ export default {
     },
     open(){
       if(window.getComputedStyle(document.getElementById("cal")).display == "none"){
-        console.log("ok");
         document.getElementById("cal").style.display = "block";
       }else{
         document.getElementById("cal").style.display = "none";
+        this.input({key:"Delete"});
       }
     }
   }
