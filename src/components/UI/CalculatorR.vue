@@ -13,6 +13,15 @@
           <cal-btn @click="buttoncal('^')">^</cal-btn>
           <cal-btn @click="buttoncal('1')">1</cal-btn>
           <cal-btn @click="buttoncal('2')">2</cal-btn>
+          <cal-btn @click="buttoncal('3')">3</cal-btn>
+          <cal-btn @click="buttoncal('4')">4</cal-btn>
+          <cal-btn @click="buttoncal('5')">5</cal-btn>
+          <cal-btn @click="buttoncal('6')">6</cal-btn>
+          <cal-btn @click="buttoncal('7')">7</cal-btn>
+          <cal-btn @click="buttoncal('8')">8</cal-btn>
+          <cal-btn @click="buttoncal('9')">9</cal-btn>
+          <cal-btn @click="buttoncal('0')">0</cal-btn>
+          <cal-btn @click="buttoncal('=')">=</cal-btn>
         </div>
       </div>
 
@@ -48,7 +57,7 @@ export default {
           this.sing = "/";
           break;
           case "%": this.action += "%";
-          this.sing = "^";
+          this.sing = "%";
           break;
           case "^": this.action +=  "^";
           this.sing = "^";
@@ -62,15 +71,16 @@ export default {
           case "Delete": this.action = "";
         }
       }
-      this.action = this.action.trim();
+      this.action = String(this.action).trim();
     },
     calculate(){
-        this.values = this.action.split(this.sing);
+        String(this.action).slice(`\n`).trim();
+        this.values = String(this.action).split(String(this.sing));
+        console.log(this.values);
         this.action = "";
         switch (this.sing){
           case "+":this.action = Number(this.values[0]) + Number(this.values[1]);
             this.sing = "";
-          console.log(this.values[0] + "/" + this.values[1]);
           break;
           case "-": this.action = Number(this.values[0]) - Number(this.values[1]);
             this.sing = "";
@@ -84,6 +94,9 @@ export default {
           case "%": this.action = Number(this.values[0]) * Number(this.values[1]) / 100;
             this.sing = "";
           break;
+          case "^": this.action = Math.pow(Number(this.values[0]), Number(this.values[1]));
+            this.sing = "";
+            break;
         }
     },
     buttoncal(s){
