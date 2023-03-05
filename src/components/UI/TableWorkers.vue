@@ -1,15 +1,11 @@
 <template>
-    <div class="Workers-row">
-      <div class="Workers">
-        <div @click="OPWork()"  class="Worker" v-for="worker in workers" :key="worker.id">
-          <img style="margin: 5px;" width="140" height="120 " src="@/assets/img/photo.jpg" alt="Photo">
-          <div class="text">
-            <h6>Name:{{worker.name}}</h6>
-            <h6>Job title:{{worker.j_title}}</h6>
-          </div>
-        </div>
-      </div>
+  <div @click="OPWork()"  class="Worker">
+    <img style="margin: 5px;" width="140" height="120 " src="@/assets/img/photo.jpg" alt="Photo">
+    <div class="text">
+      <h6>Name:{{worker.name}}</h6>
+      <h6>Job title:{{worker.j_title}}</h6>
     </div>
+  </div>
 </template>
 
 <script>
@@ -17,34 +13,18 @@ export default {
   name: "TableWorkers",
   methods: {
     OPWork(){
-         this.$emit('open_worker');
+         this.$emit('open_card_worker',this.worker.uid);
     },
   },
+  props:['worker'],
   data () {
     return{
-      workers:[
-        {id: 1,name: "Bob",j_title: "manager",uid:"123"},
-        {id: 2,name: "Nick",j_title: "web-programmer",uid:"353"},
-        {id: 3,name: "Kai",j_title: "software engineer",uid:"423"},
-        {id: 4,name: "Tim",j_title: "manager",uid:"153"},
-      ],
     }
   }
 }
 </script>
 
 <style scoped>
-.Workers-row{
-  display: flex;
-  flex-wrap: wrap;
-
-}
-.Workers{
-  margin-left: 50px;
-  margin-right: 50px;
-  margin-top: 20px;
-  display: flex;
-}
 .Worker{
   margin: 10px;
   height: 200px;
