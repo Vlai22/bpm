@@ -13,7 +13,7 @@
        </div>
       <div class="chat">
         <div class="message">
-              <MessageWorkers>dbaks</MessageWorkers>
+              <MessageWorkers v-bind:position="position">dasdas</MessageWorkers>
         </div>
          <div class="input">
            <img style="margin-top: 13px" width="30px" height="30px" src="@/assets/img/export.svg" alt="export">
@@ -35,6 +35,7 @@ export default {
   data () {
     return {
       workered:{name:"Kolin",j_title:"programmer",status:"work",location:"Weisestraße 35, 12049 Berlin, Germany",id:"112"},
+      position: "left",
     }
   },
   props:{uid: String},
