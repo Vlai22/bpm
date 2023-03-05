@@ -2,13 +2,13 @@
   <HeadDefault></HeadDefault>
   <div style="display: flex">
   <LeftBar>
-    <BtnLeftBar>Workers</BtnLeftBar>
-    <BtnLeftBar>Bookkeeping</BtnLeftBar>
-    <BtnLeftBar></BtnLeftBar>
-    <BtnLeftBar></BtnLeftBar>
-    <BtnLeftBar></BtnLeftBar>
+    <BtnLeftBar @click="open('WorkersMain')">Workers</BtnLeftBar>
+    <BtnLeftBar @click="open('BookkeepingMain')">Bookkeeping</BtnLeftBar>
+    <BtnLeftBar @click="open('WorkersMain')"></BtnLeftBar>
+    <BtnLeftBar @click="open('WorkersMain')"></BtnLeftBar>
+    <BtnLeftBar @click="open('WorkersMain')"></BtnLeftBar>
   </LeftBar>
-  <WorkersMain></WorkersMain>
+  <component :is="page"></component>
   </div>
  <calculator-r></calculator-r>
 </template>
@@ -17,6 +17,16 @@
 export default {
   data() {
     return {
+      page: "WorkersMain"
+    }
+  },
+  created() {
+    history.pushState(null,null, "workers")
+  },
+  methods:{
+    open(e){
+      this.page = e;
+      history.pushState(null,null, e.slice(0, e.length-4));
     }
   }
 }

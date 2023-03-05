@@ -5,7 +5,7 @@
         <component :is="table" @open_card_worker="open" v-bind:worker="worker"  v-for="worker in workers" :key="worker.id"></component>
         </div>
       </div>
-        <component :is="title" @exit_card_worker="exit" v-bind:worker="workeruid"></component>
+        <component :is="title" @exit_card_worker="exit" v-bind:uid="workeruid"></component>
     </div>
 </template>
 
@@ -33,7 +33,6 @@ export default {
   },
   methods: {
     open(a) {
-      console.log(a);
       this.workeruid = a;
       this.table = "";
       this.title = "CardWorker";
