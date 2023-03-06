@@ -48,6 +48,7 @@ export default {
 <style scoped>
 .page{
   width: 100%;
+  height: 100vh;
   background-color: rgba(150,150,150,0.2);
 }
 .Workers-row{
