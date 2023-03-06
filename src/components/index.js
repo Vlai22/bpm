@@ -5,6 +5,7 @@ import CalculatorR from "@/components/UI/CalculatorR";
 import CalBtn from "@/components/UI/CalBtn";
 import WorkersMain from "@/components/Pages/WorkersMain";
 import BookkeepingMain from "@/components/Pages/BookkeepingMain";
+import BookkepingTable from "@/components/UI/BookkepingTable";
 
 export default [
     HeadDefault,
@@ -14,4 +15,5 @@ export default [
     CalBtn,
     WorkersMain,
     BookkeepingMain,
+    BookkepingTable,
 ]

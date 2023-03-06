@@ -40,6 +40,7 @@ export default {
   methods : {
     input(e) {
       this.key = e.key;
+      console.log(e)
       if(this.key >= 0 && this.key <= 9){
           this.action += Number(this.key);
       }else{

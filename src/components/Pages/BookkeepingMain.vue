@@ -1,12 +1,13 @@
 <template>
     <div class="page">
       <p>Bookkeeping Main</p>
+      <BookkepingTable></BookkepingTable>
     </div>
 </template>
 
 <script>
 export default {
-  name: "BookkeepingMain"
+  name: "BookkeepingMain",
 }
 </script>
 
