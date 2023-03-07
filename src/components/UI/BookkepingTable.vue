@@ -8,9 +8,9 @@
             </thead>
             <tbody>
               <tr>
-                <td @click="test()" value="A1"> A 1 </td>
-                <td @click="test()" value="B1"> A 2</td>
-                <td @click="test()" value="C1"> A 3</td>
+                <td @click="test1($event.target)" test="lol" id="A1"> A 1 </td>
+                <td @click="test1($event.target)" id="B1"> A 2</td>
+                <td @click="test1($event.target)" id="C1">A 3</td>
               </tr>
             </tbody>
         </table>
@@ -21,8 +21,8 @@
 export default {
   name: "BookkepingTable",
   methods:{
-    test(e){
-      console.log('ok' + e);
+    test1(el){
+      console.log(el.getAttribute('id'));
     }
   }
 }
