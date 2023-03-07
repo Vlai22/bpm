@@ -1,6 +1,6 @@
 <template>
       <div>
-        <table id="table" class="table" border="1">
+        <table id="table" class="table" border="1" width="1000" heigth="100">
             <thead>
               <th>///</th>
               <th v-for="arr_EN in arr_ENs" :key="arr_EN">{{arr_EN}}</th>
