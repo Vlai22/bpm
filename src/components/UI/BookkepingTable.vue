@@ -1,16 +1,14 @@
 <template>
       <div>
-        <table class="table">
+        <table id="table" class="table" border="1">
             <thead>
-              <th>test 1 </th>
-              <th>test 2 </th>
-              <th>test 3 </th>
+              <th>///</th>
+              <th v-for="arr_EN in arr_ENs" :key="arr_EN">{{arr_EN}}</th>
             </thead>
             <tbody>
-              <tr>
-                <td @click="test1($event.target)" test="lol" id="A1"> A 1 </td>
-                <td @click="test1($event.target)" id="B1"> A 2</td>
-                <td @click="test1($event.target)" id="C1">A 3</td>
+              <tr  v-for="n in this.a" :key="n">
+                <td>{{n}}</td>
+                <td v-for="arr_EN in arr_ENs" :key="arr_EN" id="a" @click="test($event.target)" ></td>
               </tr>
             </tbody>
         </table>
@@ -21,8 +19,27 @@
 export default {
   name: "BookkepingTable",
   methods:{
-    test1(el){
-      console.log(el.getAttribute('id'));
+    test(el){
+      console.log(el);
+    }
+  },
+  data(){
+    return{
+      a: 10,
+      arr_ENs: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+    }
+  },
+  mounted() {
+    let  el = document.getElementById('table');
+    let n = 0;
+    let m = '1';
+    for ( let i of el.rows){
+      n=0;
+      for( let j of i.cells){
+          j.setAttribute( 'id',String(this.arr_ENs[n] + m));
+          n++;
+      }
+      m++;
     }
   }
 }
@@ -30,7 +47,5 @@ export default {
 
 <style scoped>
 .table{
-  border: 1px solid black;
-  border-radius: 1px;
 }
 </style>
