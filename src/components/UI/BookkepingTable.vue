@@ -1,43 +1,51 @@
 <template>
-      <div>
-        <table id="table" class="table" border="1" width="1000" heigth="100">
-            <thead>
-              <th>///</th>
-              <th v-for="arr_EN in arr_ENs" :key="arr_EN">{{arr_EN}}</th>
-            </thead>
-            <tbody>
-              <tr  v-for="n in this.a" :key="n">
-                <td>{{n}}</td>
-                <td v-for="arr_EN in arr_ENs" :key="arr_EN" id="a" @click="test($event.target)" ></td>
-              </tr>
-            </tbody>
-        </table>
-      </div>
+  <div style="overflow: auto; width: 100vh; margin-left: 40px; height: 100vh">
+    <table id="table" class="table">
+      <thead>
+      <th>///</th>
+      <th v-for="arr_EN in arr_ENs" :key="arr_EN">{{ arr_EN }}</th>
+      </thead>
+      <tbody>
+      <tr v-for="n in this.a" :key="n">
+        <td>{{ n }}</td>
+        <td v-for="arr_EN in arr_ENs" :key="arr_EN" id="a"
+            @click="click_cell($event.target)">{{n + "a"}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>
 export default {
   name: "BookkepingTable",
-  methods:{
-    test(el){
-      console.log(el);
+  methods: {
+    click_cell(el) {
+      if(window.getComputedStyle(el).border == "0.8px solid rgb(221, 221, 221)"){
+        el.style.border = "3px solid green";
+        document.getElementById("F6").style.border = "1px solid #dddddd";
+        this.element = el.getAttribute('id');
+      }else{
+        el.style.border = "1px solid #dddddd";
+      }
     }
   },
-  data(){
-    return{
+  data() {
+    return {
       a: 10,
+      element: "",
       arr_ENs: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
     }
   },
   mounted() {
-    let  el = document.getElementById('table');
+    let el = document.getElementById('table');
     let n = 0;
     let m = '1';
-    for ( let i of el.rows){
-      n=0;
-      for( let j of i.cells){
-          j.setAttribute( 'id',String(this.arr_ENs[n] + m));
-          n++;
+    for (let i  of el.rows ) {
+      n = 0;
+      for (let j of i.cells ) {
+        j.setAttribute('id', String(this.arr_ENs[n] + m));
+        n++;
       }
       m++;
     }
@@ -46,6 +54,23 @@ export default {
 </script>
 
 <style scoped>
-.table{
+.table {
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid #dddddd;
+  border-collapse: collapse;
+}
+.table th {
+  font-weight: bold;
+  padding: 5px;
+  background: #efefef;
+  border: 1px solid #dddddd;
+}
+.table td {
+  border: 1px solid #dddddd;
+  padding: 5px;
+}
+.table td:hover{
+  background-color: rgba(150,150,150,0.2);
 }
 </style>

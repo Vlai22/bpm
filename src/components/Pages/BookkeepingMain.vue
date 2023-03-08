@@ -14,6 +14,6 @@ export default {
 <style scoped>
 .page{
   width: 100%;
-  background-color: rgba(150,150,150,0.2);
+  background-color: rgba(222, 219, 219, 0.2);
 }
 </style>
