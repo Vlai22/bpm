@@ -23,7 +23,8 @@ export default {
     click_cell(el) {
       if(window.getComputedStyle(el).border == "0.8px solid rgb(221, 221, 221)"){
         el.style.border = "3px solid green";
-        document.getElementById("F6").style.border = "1px solid #dddddd";
+        document.getElementById(this.element).style.border = "1px solid #dddddd";
+        console.log(el.getAttribute("id"));
         this.element = el.getAttribute('id');
       }else{
         el.style.border = "1px solid #dddddd";
@@ -33,7 +34,7 @@ export default {
   data() {
     return {
       a: 10,
-      element: "",
+      element: "A1",
       arr_ENs: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
     }
   },
