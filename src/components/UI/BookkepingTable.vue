@@ -7,7 +7,7 @@
       </thead>
       <tbody>
       <tr v-for="n in this.a" :key="n">
-        <td>{{ n }}</td>
+        <td id="b">{{ n }}</td>
         <td v-for="arr_EN in arr_ENs" :key="arr_EN" id="a"
             @click="click_cell($event.target)">{{n + "a"}}</td>
       </tr>
@@ -24,17 +24,28 @@ export default {
       if(window.getComputedStyle(el).border == "0.8px solid rgb(221, 221, 221)"){
         el.style.border = "3px solid green";
         document.getElementById(this.element).style.border = "1px solid #dddddd";
-        console.log(el.getAttribute("id"));
         this.element = el.getAttribute('id');
+        if(window.getComputedStyle(el).border == "0.8px solid rgb(221, 221, 221)"){
+          this.press = false;
+        }else {
+          this.press = true;
+        }
       }else{
         el.style.border = "1px solid #dddddd";
       }
-    }
+    },
+    input (e) {
+        if(this.press == true){
+          console.log("ok");
+          document.getElementById(this.element).innerHTML += e;
+        }
+    },
   },
   data() {
     return {
       a: 10,
       element: "A1",
+      press: false,
       arr_ENs: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
     }
   },
@@ -45,11 +56,16 @@ export default {
     for (let i  of el.rows ) {
       n = 0;
       for (let j of i.cells ) {
-        j.setAttribute('id', String(this.arr_ENs[n] + m));
+        if(j.getAttribute("id") == "b"){
+           j.setAttribute("id", String(m));
+        }else {
+          j.setAttribute('id', String(this.arr_ENs[n - 1] + m));
+        }
         n++;
       }
       m++;
     }
+   document.addEventListener("keydown", this.input());
   }
 }
 </script>

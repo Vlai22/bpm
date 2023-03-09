@@ -30,10 +30,6 @@
 <script>
 export default {
   name: "CalculatorR",
-  created() {
-      window.addEventListener('keydown',this.input);
-
-  },
   data () {
     return{j:0, i: "",sing: "",action : "",values:[],key: ""}
   },
@@ -106,9 +102,11 @@ export default {
     open(){
       if(window.getComputedStyle(document.getElementById("cal")).display == "none"){
         document.getElementById("cal").style.display = "block";
+        window.addEventListener('keydown',this.input);
       }else{
         document.getElementById("cal").style.display = "none";
         this.input({key:"Delete"});
+        window.removeEventListener('keydown',this.input);
       }
     }
   }
