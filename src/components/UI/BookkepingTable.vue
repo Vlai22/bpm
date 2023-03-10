@@ -56,9 +56,9 @@ export default {
           }else if(e.key == "ArrowRight"){
             for(let i = 0; i < this.arr_ENs.length-1;i++){
               if(this.arr_ENs[i] == this.element.substring(0,this.element.length - 1)){
-                console.log("ok");
                 document.getElementById(this.arr_ENs[i + 1] + this.element.substring(1)).style.border = "3px solid green";
                 document.getElementById(this.element).style.border = "1px solid #dddddd";
+                console.log(this.element.substring(1));
                 this.element = this.arr_ENs[i + 1] + this.element.substring(1);
               }
             }
