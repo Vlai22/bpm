@@ -36,15 +36,22 @@ export default {
     },
     input (e) {
         if(this.press == true){
-          console.log("ok");
-          document.getElementById(this.element).innerHTML += e;
+          let a = document.getElementById(this.element).innerHTML;
+          if(e.key == "Backspace"){
+             document.getElementById(this.element).innerHTML = a.substring(0,a.length - 1);
+          }else if( e.key == "Enter"){
+              document.getElementById(this.element).innerHTML += "/n";
+          }
+          else {
+                document.getElementById(this.element).innerHTML += e.key;
+          }
         }
     },
   },
   data() {
     return {
       a: 10,
-      element: "A1",
+      element: "1",
       press: false,
       arr_ENs: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
     }
@@ -65,7 +72,7 @@ export default {
       }
       m++;
     }
-   document.addEventListener("keydown", this.input());
+   window.addEventListener("keydown", this.input,false);
   }
 }
 </script>

@@ -11,6 +11,7 @@
   <component :is="page"></component>
   </div>
  <calculator-r></calculator-r>
+  <footer-main></footer-main>
 </template>
 
 <script>
