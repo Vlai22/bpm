@@ -40,7 +40,7 @@ export default {
           if(e.key == "Backspace"){
              document.getElementById(this.element).innerHTML = a.substring(0,a.length - 1);
           }else if( e.key == "Enter"){
-              document.getElementById(this.element).innerHTML += "/n";
+              document.getElementById(this.element).innerHTML += "\n";
           }
           else {
                 document.getElementById(this.element).innerHTML += e.key;

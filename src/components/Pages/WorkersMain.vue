@@ -7,6 +7,7 @@
       </div>
         <component :is="title" @exit_card_worker="exit" v-bind:uid="workeruid"></component>
     </div>
+  <download-circle></download-circle>
 </template>
 
 <script>
@@ -40,7 +41,7 @@ export default {
     exit(){
       this.title = "";
       this.table = "TableWorkers";
-    }
+    },
   },
 }
 </script>
