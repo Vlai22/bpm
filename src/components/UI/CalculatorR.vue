@@ -36,7 +36,6 @@ export default {
   methods : {
     input(e) {
       this.key = e.key;
-      console.log(e)
       if(this.key >= 0 && this.key <= 9){
           this.action += Number(this.key);
       }else{
@@ -73,7 +72,6 @@ export default {
     calculate(){
         String(this.action).slice(`\n`).trim();
         this.values = String(this.action).split(String(this.sing));
-        console.log(this.values);
         this.action = "";
         switch (this.sing){
           case "+":this.action = Number(this.values[0]) + Number(this.values[1]);
