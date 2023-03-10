@@ -6,8 +6,9 @@
         </div>
       </div>
         <component :is="title" @exit_card_worker="exit" v-bind:uid="workeruid"></component>
+        <download-circle></download-circle>
     </div>
-  <download-circle></download-circle>
+
 </template>
 
 <script>

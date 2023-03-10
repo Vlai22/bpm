@@ -1,5 +1,6 @@
 <template>
-  <div class="download"></div>
+  <div class="download">
+  </div>
 </template>
 
 <script>
@@ -17,4 +18,5 @@ export default {
   height: 200px;
   position: absolute;
 }
+
 </style>
