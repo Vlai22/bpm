@@ -9,7 +9,7 @@
       <tr v-for="n in this.a" :key="n">
         <td id="b">{{ n }}</td>
         <td v-for="arr_EN in arr_ENs" :key="arr_EN" id="a"
-            @click="click_cell($event.target)">{{n + "a"}}</td>
+            @click="click_cell($event.target)"></td>
       </tr>
       </tbody>
     </table>
@@ -35,12 +35,33 @@ export default {
       }
     },
     input (e) {
+      console.log(e.key);
+      console.log(this.element)
         if(this.press == true){
           let a = document.getElementById(this.element).innerHTML;
           if(e.key == "Backspace"){
              document.getElementById(this.element).innerHTML = a.substring(0,a.length - 1);
           }else if( e.key == "Enter"){
               document.getElementById(this.element).innerHTML += "\n";
+          }else if(e.key == "Control"){
+            document.getElementById(this.element).innerHTML += "";
+          }else if(e.key == "ArrowLeft"){
+            for(let i = 0; i < this.arr_ENs.length-1;i++){
+              if(this.arr_ENs[i] == this.element.substring(0,this.element.length - 1)){
+                document.getElementById(this.arr_ENs[i - 1] + this.element.substring(1)).style.border = "3px solid green";
+                document.getElementById(this.element).style.border = "1px solid #dddddd";
+                 this.element = this.arr_ENs[i - 1] + this.element.substring(1);
+              }
+            }
+          }else if(e.key == "ArrowRight"){
+            for(let i = 0; i < this.arr_ENs.length-1;i++){
+              if(this.arr_ENs[i] == this.element.substring(0,this.element.length - 1)){
+                console.log("ok");
+                document.getElementById(this.arr_ENs[i + 1] + this.element.substring(1)).style.border = "3px solid green";
+                document.getElementById(this.element).style.border = "1px solid #dddddd";
+                this.element = this.arr_ENs[i + 1] + this.element.substring(1);
+              }
+            }
           }
           else {
                 document.getElementById(this.element).innerHTML += e.key;
