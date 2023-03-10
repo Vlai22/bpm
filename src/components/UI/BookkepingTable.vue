@@ -21,52 +21,67 @@ export default {
   name: "BookkepingTable",
   methods: {
     click_cell(el) {
-      if(window.getComputedStyle(el).border == "0.8px solid rgb(221, 221, 221)"){
+      if (window.getComputedStyle(el).border == "0.8px solid rgb(221, 221, 221)") {
         el.style.border = "3px solid green";
         document.getElementById(this.element).style.border = "1px solid #dddddd";
         this.element = el.getAttribute('id');
-        if(window.getComputedStyle(el).border == "0.8px solid rgb(221, 221, 221)"){
+        if (window.getComputedStyle(el).border == "0.8px solid rgb(221, 221, 221)") {
           this.press = false;
-        }else {
+        } else {
           this.press = true;
         }
-      }else{
+      } else {
         el.style.border = "1px solid #dddddd";
       }
     },
-    input (e) {
+    input(e) {
       console.log(e.key);
       console.log(this.element)
-        if(this.press == true){
-          let a = document.getElementById(this.element).innerHTML;
-          if(e.key == "Backspace"){
-             document.getElementById(this.element).innerHTML = a.substring(0,a.length - 1);
-          }else if( e.key == "Enter"){
-              document.getElementById(this.element).innerHTML += "\n";
-          }else if(e.key == "Control"){
-            document.getElementById(this.element).innerHTML += "";
-          }else if(e.key == "ArrowLeft"){
-            for(let i = 0; i < this.arr_ENs.length-1;i++){
-              if(this.arr_ENs[i] == this.element.substring(0,this.element.length - 1)){
-                document.getElementById(this.arr_ENs[i - 1] + this.element.substring(1)).style.border = "3px solid green";
-                document.getElementById(this.element).style.border = "1px solid #dddddd";
-                 this.element = this.arr_ENs[i - 1] + this.element.substring(1);
-              }
-            }
-          }else if(e.key == "ArrowRight"){
-            for(let i = 0; i < this.arr_ENs.length-1;i++){
-              if(this.arr_ENs[i] == this.element.substring(0,this.element.length - 1)){
-                document.getElementById(this.arr_ENs[i + 1] + this.element.substring(1)).style.border = "3px solid green";
-                document.getElementById(this.element).style.border = "1px solid #dddddd";
-                console.log(this.element.substring(1));
-                this.element = this.arr_ENs[i + 1] + this.element.substring(1);
-              }
+      if (this.press == true) {
+        let a = document.getElementById(this.element).innerHTML;
+        if (e.key == "Backspace") {
+          document.getElementById(this.element).innerHTML = a.substring(0, a.length - 1);
+        } else if (e.key == "Enter") {
+          document.getElementById(this.element).innerHTML += "\n";
+        } else if (e.key == "Control") {
+          document.getElementById(this.element).innerHTML += "";
+        } else if (e.key == "ArrowLeft") {
+          for (let i = 0; i < this.arr_ENs.length - 1; i++) {
+            if (this.arr_ENs[i] == this.element.substring(0, this.element.length - 1)) {
+              document.getElementById(this.arr_ENs[i - 1] + this.element.substring(1)).style.border = "3px solid green";
+              document.getElementById(this.element).style.border = "1px solid #dddddd";
+              this.element = this.arr_ENs[i - 1] + this.element.substring(1);
             }
           }
-          else {
-                document.getElementById(this.element).innerHTML += e.key;
+        } else if (e.key == "ArrowRight") {
+          let b = true;
+          let i = 0;
+          while (b == true) {
+            if (this.arr_ENs[i] == this.element.substring(0, this.element.length - 1)) {
+              document.getElementById(this.arr_ENs[i + 1] + this.element.substring(1)).style.border = "3px solid green";
+              document.getElementById(this.element).style.border = "1px solid #dddddd";
+              console.log(this.element.substring(1));
+              this.element = this.arr_ENs[i + 1] + this.element.substring(1);
+              b = false;
+            }
+            i++;
           }
+        } else if (e.key == "ArrowDown") {
+          if (this.element.substring(1) < this.a) {
+            document.getElementById(this.element).style.border = "1px solid #dddddd";
+            document.getElementById(this.element.substring(0, this.element.length - 1) + Number(Number(this.element.substring(1)) + 1)).style.border = "3px solid green";
+            this.element = this.element.substring(0, this.element.length - 1) + Number(Number(this.element.substring(1)) + 1);
+          }
+        } else if (e.key == "ArrowUp") {
+          if (this.element.substring(1) > 1) {
+            document.getElementById(this.element).style.border = "1px solid #dddddd";
+            document.getElementById(this.element.substring(0, this.element.length - 1) + Number(Number(this.element.substring(1)) - 1)).style.border = "3px solid green";
+            this.element = this.element.substring(0, this.element.length - 1) + Number(Number(this.element.substring(1)) - 1);
+          }
+        } else {
+          document.getElementById(this.element).innerHTML += e.key;
         }
+      }
     },
   },
   data() {
@@ -81,19 +96,19 @@ export default {
     let el = document.getElementById('table');
     let n = 0;
     let m = '1';
-    for (let i  of el.rows ) {
+    for (let i of el.rows) {
       n = 0;
-      for (let j of i.cells ) {
-        if(j.getAttribute("id") == "b"){
-           j.setAttribute("id", String(m));
-        }else {
+      for (let j of i.cells) {
+        if (j.getAttribute("id") == "b") {
+          j.setAttribute("id", String(m));
+        } else {
           j.setAttribute('id', String(this.arr_ENs[n - 1] + m));
         }
         n++;
       }
       m++;
     }
-   window.addEventListener("keydown", this.input,false);
+    window.addEventListener("keydown", this.input, false);
   }
 }
 </script>
@@ -105,17 +120,20 @@ export default {
   border: 1px solid #dddddd;
   border-collapse: collapse;
 }
+
 .table th {
   font-weight: bold;
   padding: 5px;
   background: #efefef;
   border: 1px solid #dddddd;
 }
+
 .table td {
   border: 1px solid #dddddd;
   padding: 5px;
 }
-.table td:hover{
-  background-color: rgba(150,150,150,0.2);
+
+.table td:hover {
+  background-color: rgba(150, 150, 150, 0.2);
 }
 </style>
