@@ -100,11 +100,11 @@ export default {
     open(){
       if(window.getComputedStyle(document.getElementById("cal")).display == "none"){
         document.getElementById("cal").style.display = "block";
-        window.addEventListener('keydown',this.input);
+        window.addEventListener('keydown',this.input,false);
       }else{
         document.getElementById("cal").style.display = "none";
         this.input({key:"Delete"});
-        window.removeEventListener('keydown',this.input);
+        window.removeEventListener('keydown',this.input, false);
       }
     }
   }
