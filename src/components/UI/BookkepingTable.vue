@@ -57,11 +57,14 @@ export default {
           let b = true;
           let i = 0;
           while (b == true) {
+            console.log(this.arr_ENs[i]);
             if (this.arr_ENs[i] == this.element.substring(0, this.element.length - 1)) {
-              document.getElementById(this.arr_ENs[i + 1] + this.element.substring(1)).style.border = "3px solid green";
-              document.getElementById(this.element).style.border = "1px solid #dddddd";
-              console.log(this.element.substring(1));
-              this.element = this.arr_ENs[i + 1] + this.element.substring(1);
+              if(this.arr_ENs[i] != this.arr_ENs[this.arr_ENs.length - 1]) {
+                document.getElementById(this.arr_ENs[i + 1] + this.element.substring(1)).style.border = "3px solid green";
+                document.getElementById(this.element).style.border = "1px solid #dddddd";
+                console.log(this.element.substring(1));
+                this.element = this.arr_ENs[i + 1] + this.element.substring(1);
+              }
               b = false;
             }
             i++;
